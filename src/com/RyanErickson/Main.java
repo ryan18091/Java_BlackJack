@@ -19,6 +19,7 @@ public class Main {
 
         //Instantiates the game while passing the #of players and starting dollar amount(money)
         Game newGame = new Game(players, money);
+        newGame.deal();
 
 
 
