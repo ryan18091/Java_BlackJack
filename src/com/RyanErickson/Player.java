@@ -13,6 +13,13 @@ public class Player {
         this.money = money;
     }
 
+    public int getHandTotal(){
+        int total = 0;
+
+
+        return total;
+    }
+
     public void clearHand() {
         this.hand = new ArrayList<Card>();
     }
@@ -21,7 +28,9 @@ public class Player {
         return hand;
     }
 
-    public
+    public void addCard(Card card) {
+        this.hand.add(card);
+    }
 
     public void setHand(List<Card> hand, Card card) {
         this.hand = hand;

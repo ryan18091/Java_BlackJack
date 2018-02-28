@@ -21,6 +21,9 @@ public class Main {
         Game newGame = new Game(players, money);
         newGame.deal();
 
+        //starts game play
+        newGame.gamePlay();
+
 
 
 

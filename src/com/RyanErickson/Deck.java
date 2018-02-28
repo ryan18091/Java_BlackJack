@@ -28,7 +28,7 @@ class CardDeck {  // A deck of card
     public Card getNextCard() {
         Card nextCard = deck.get(0);
         nextCard = deck.remove(0);
-//        System.out.println(nextCard);
+        System.out.println(nextCard);
         return nextCard;
     }
 
