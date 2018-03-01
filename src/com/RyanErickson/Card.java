@@ -25,5 +25,5 @@ class Card {  // A card
 
     Suit getSuit() {
         return suit; }
-    public String toString() { return rank + " of " + suit + "with a value of " + value; }
+    public String toString() { return rank + " of " + suit + " with a value of " + value; }
 }
