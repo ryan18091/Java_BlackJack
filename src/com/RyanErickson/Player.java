@@ -10,10 +10,12 @@ public class Player {
 
     List<Card> hand;
     private int money;
+    private int bet;
 
-    public Player(int money){
+    public Player(int money, int bet){
         hand = new ArrayList<Card>();
         this.money = money;
+        this.bet = bet;
     }
 
     public int getHandTotal(){
@@ -24,19 +26,35 @@ public class Player {
         return total;
     }
 
-    public boolean stayOrHit(boolean stayhit){
+    public int getHandTotalFinal(){
+        int total = 0;
+        for(int i = 0; i < hand.size(); i++){
+            total += hand.get(i).getFinalCardValue();
+        }
+        return total;
+    }
+
+    public boolean stayOrHit(boolean stayHit){
         System.out.println("Do you wish to stay or hit?");
         System.out.println("Enter 1 for stay or 2 for hit.");
         int choice = sc.nextInt();
 
         if(choice == 1 || choice == 2 ) {
             if (choice == 1) {
-                stayhit = false;
-            } else { stayhit = true;}
+                stayHit = false;
+            } else { stayHit = true;}
         }
-        else {stayOrHit(stayhit);}
+        else {stayOrHit(stayHit);}
 
-        return stayhit;
+        return stayHit;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
     }
 
     public Object showCard() {
