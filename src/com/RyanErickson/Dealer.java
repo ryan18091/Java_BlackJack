@@ -33,7 +33,7 @@ public class Dealer {
     public int getHandTotal(){
         int total = 0;
         for(int i = 0; i < hand.size(); i++){
-            total += hand.get(i).getValue();
+            total += hand.get(i).getFinalCardValue();
         }
         return total;
     }
