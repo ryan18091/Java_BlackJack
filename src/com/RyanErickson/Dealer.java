@@ -2,37 +2,24 @@ package com.RyanErickson;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Dealer {
-
-    private Card cards;
-
-    Scanner sc = new Scanner(System.in);
-
     private List<Card> hand;
     private int money;
 
-    public Dealer(int money){
-        hand = new ArrayList<Card>();
+    public Dealer(int money) {
+        hand = new ArrayList<>();
         this.money = money;
     }
 
-    public boolean dealersPlay(boolean dealersTurn){
+    public boolean dealersPlay() {
         System.out.println("The dealer shows " + this.getHand() + "for a total of " + this.getHandTotal());
-        if(this.getHandTotal() <= 16) {
-            dealersTurn = true;
-        } else {dealersTurn = false;}
-
-        return dealersTurn;
-
+        return this.getHandTotal() <= 16;
     }
 
-
-
-    public int getHandTotal(){
+    public int getHandTotal() {
         int total = 0;
-        for(int i = 0; i < hand.size(); i++){
+        for (int i = 0; i < hand.size(); i++) {
             total += hand.get(i).getFinalCardValue();
         }
         return total;
@@ -43,7 +30,7 @@ public class Dealer {
     }
 
     public void clearHand() {
-        this.hand = new ArrayList<Card>();
+        this.hand = new ArrayList<>();
     }
 
     public List<Card> getHand() {
@@ -53,19 +40,6 @@ public class Dealer {
     public void addCard(Card card) {
         this.hand.add(card);
     }
-
-    public void setHand(List<Card> hand, Card card) {
-        this.hand = hand;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
 
 }
 
