@@ -16,23 +16,13 @@ public class Main {
         int money = sc.nextInt();
         System.out.println("Ok, each player will start with $ " + money);
 
-
         //Instantiates the game while passing the #of players and starting dollar amount(money)
         Game newGame = new Game(players, money);
 
         //starts game play
         newGame.gamePlay();
 
-
-
-
-
-
         //Instantiates the dealer
-
         //Instantiates the player(s)
-
-
-
     }
 }

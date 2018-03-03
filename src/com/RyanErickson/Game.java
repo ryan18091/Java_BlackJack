@@ -5,16 +5,16 @@ import java.util.*;
 
 public class Game {
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     private List<Player> players;
     private Dealer dealer;
     private CardDeck deck;
 
     public Game(int playerAmount, int money) { //Constructor
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
 
-        for(int i = 0; i < playerAmount; i++) {
+        for (int i = 0; i < playerAmount; i++) {
             //instantiates the player(s)
             int bet = 0;
             Player player = new Player(money, bet);
@@ -30,13 +30,13 @@ public class Game {
 
     public void deal() {
         //Adds cards to player(s) hands
-        for(int d = 0; d < players.size(); d++) {
+        for (int d = 0; d < players.size(); d++) {
             //Checks to see if player has money, if so, they can bet and be dealt cards
-            if(players.get(d).getMoney() > 0) {
+            if (players.get(d).getMoney() > 0) {
                 this.setBet(d);
                 for (int c = 0; c < 2; c++) {
                     //if Deck is empty/ Create new deck and shuffle
-                    if(deck.deck.size() > 0) {
+                    if (deck.deck.size() > 0) {
                         players.get(d).addCard(deck.getNextCard());
                     } else {
                         this.deck = new CardDeck();
@@ -49,14 +49,14 @@ public class Game {
             }
         }
         //Adds cards to dealers hand
-        for(int c = 0; c < 2; c++) {
+        for (int c = 0; c < 2; c++) {
             dealer.addCard(deck.getNextCard());
         }
     }
 
     //sets bet for each player as the deal is taking place
     public void setBet(int d) {
-        if(players.get(d).getMoney() > 0) {
+        if (players.get(d).getMoney() > 0) {
             System.out.println("Player " + (d + 1) + " how much do you wish to bet?");
             System.out.println("You have $" + players.get(d).getMoney());
             int playerBet = sc.nextInt();
@@ -81,7 +81,7 @@ public class Game {
             this.deal();
             for (int t = 0; t < players.size(); t++) {
                 boolean stayHit = true;
-                if(players.get(t).getMoney() > 0) {
+                if (players.get(t).getMoney() > 0) {
                     //Game engine, evals. to false when players choose stay
                     while (stayHit) {
                         if (players.get(t).getHandTotalFinal() <= 21) {
@@ -107,7 +107,7 @@ public class Game {
             //dealers turn checks for dealers logic on whether to hit or stay
             boolean dealersTurn = true;
             while (dealersTurn) {
-                dealersTurn = dealer.dealersPlay(dealersTurn);
+                dealersTurn = dealer.dealersPlay();
                 if (dealersTurn) {
                     dealer.addCard(deck.getNextCard());
                 } else {
@@ -119,12 +119,9 @@ public class Game {
             this.handReset();
             //Checks if there is any more money in players hands
             playersMoneyTotal = playerMoneyTotal();
-            if(playersMoneyTotal == 0) {
+            if (playersMoneyTotal == 0) {
                 System.out.println("Game Over");
             }
-
-
-
 
 
         }
@@ -135,8 +132,8 @@ public class Game {
     public void handOutcome() {
         //compares dealers hand total to players hand totals
         System.out.println("Dealer has " + dealer.getHandTotal());
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).getMoney() > 0) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getMoney() > 0) {
 
                 if (players.get(i).getMoney() > 0) {
                     if (dealer.getHandTotal() <= 21) {
@@ -170,21 +167,19 @@ public class Game {
                 ;
             }
         }
-
-
     }
 
-    public void betWin(int i){
+    public void betWin(int i) {
         int moneyTotal = players.get(i).getMoney() + players.get(i).getBet();
         players.get(i).setMoney(moneyTotal);
-        }
+    }
 
     public void betLoose(int i) {
         int moneyTotal = players.get(i).getMoney() - players.get(i).getBet();
         players.get(i).setMoney(moneyTotal);
     }
 
-    public int playerMoneyTotal(){
+    public int playerMoneyTotal() {
         int playersMoneyTotal = 0;
         for (int i = 0; i < players.size(); i++) {
             playersMoneyTotal += players.get(i).getMoney();
@@ -194,12 +189,11 @@ public class Game {
 
     public void handReset() {
         //clears players hand
-        for(int t = 0; t < players.size(); t++){
+        for (int t = 0; t < players.size(); t++) {
             players.get(t).clearHand();
         }
         //clears dealers hand
         dealer.clearHand();
-
     }
 }
 
